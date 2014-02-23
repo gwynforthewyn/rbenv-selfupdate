@@ -1,0 +1,30 @@
+function update_git_repository() {
+  GIT_REPOSITORY=$1
+
+  cd ${GIT_REPOSITORY}
+  git pull
+
+}
+
+function excecute_command_and_restore_directory() {
+  COMMANDS=$*
+
+  pushd . > /dev/null
+  ${COMMANDS}
+  popd > /dev/null
+
+}
+
+RBENV_ROOT_ERROR_MESSAGE=<< EOF
+The command "rbenv root" is not responding
+please verify rbenv is installed correctly
+EOF
+
+RBENV_ROOT=`rbenv root`
+
+if [ -z ${RBENV_ROOT} ]; then
+  echo "${RBENV_ROOT_ERROR_MESSAGE}" >&2
+  exit 1
+fi
+
+excecute_command_and_restore_directory update_git_repository ${RBENV_ROOT}
