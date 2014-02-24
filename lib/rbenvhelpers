@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 
+function execute_command_and_restore_directory() {
+  COMMANDS=$*
+
+  pushd . > /dev/null
+  ${COMMANDS}
+  popd > /dev/null
+}
+
 function update_git_repository() {
   GIT_REPOSITORY=$1
 
   cd ${GIT_REPOSITORY}
 
   git pull
-}
-
-function excecute_command_and_restore_directory() {
-  COMMANDS=$*
-
-  pushd . > /dev/null
-  ${COMMANDS}
-  popd > /dev/null
 }

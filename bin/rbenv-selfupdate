@@ -15,4 +15,4 @@ PLUGIN_NAME=$(basename $0)
 
 source "${RBENV_ROOT}/plugins/${PLUGIN_NAME}/lib/rbenvhelpers"
 
-excecute_command_and_restore_directory update_git_repository ${RBENV_ROOT}
+execute_command_and_restore_directory update_git_repository ${RBENV_ROOT}
