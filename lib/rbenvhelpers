@@ -1,17 +1,11 @@
 #!/usr/bin/env bash
 
-LIBRARY_NAME=`basename $0`
-
 function update_git_repository() {
   GIT_REPOSITORY=$1
 
   cd ${GIT_REPOSITORY}
 
-  if [ -d .git ]
-    git pull
-  else
-    echo "Not a git repository: no .git folder found. From $LIBRARY_NAME."
-    return 1
+  git pull
 }
 
 function excecute_command_and_restore_directory() {
