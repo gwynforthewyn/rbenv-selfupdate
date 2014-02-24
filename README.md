@@ -4,7 +4,7 @@
 
 Simply clone the repository into the plugins directory:
 
-    git clone https://github.com/jamandbees/rbenv-selfupdate.git ~/plugins/rbenv-selfupdate
+    git clone https://github.com/jamandbees/rbenv-selfupdate.git ~/.rbenv/plugins/rbenv-selfupdate
 
 
 ## Getting Started
