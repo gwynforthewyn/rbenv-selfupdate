@@ -26,7 +26,7 @@ function bundler_exists() {
 function bundle_install() {
   PATH_TO_BUNDLE_FILE=$1
   
-  if [ bundler_exists != 0 ] {
+  if [ bundler_exists != 0 ]; then {
     echo $stderr "Bundler is not installed. Cannot run bundle install."
     return 1
   }
