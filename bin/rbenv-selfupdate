@@ -6,6 +6,8 @@ The command "rbenv root" is not responding
 please verify rbenv is installed correctly
 EOF
 
+MY_RBENV_ROOT=`rbenv root`
+
 if [ -z ${MY_RBENV_ROOT} ]; then
   echo "${RBENV_ROOT_ERROR_MESSAGE}" >&2
   exit 1
