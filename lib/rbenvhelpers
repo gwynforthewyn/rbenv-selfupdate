@@ -33,6 +33,15 @@ function bundle_install() {
   return $?
 }
 
+function build_bundler_line() {
+  GEM=$1
+
+  NAME=`discover_gem_name_from_ls $GEM`
+  VERSION=`discover_gem_version_from_ls $GEM`
+  echo "gem '$NAME', ~> '$VERSION'"
+  
+  return 0
+}
 #Returns 0 if bundler exists.
 #Returns 1 if bundler does not exist.
 function bundler_exists() {
