@@ -6,13 +6,13 @@ The command "rbenv root" is not responding
 please verify rbenv is installed correctly
 EOF
 
-if [ -z ${RBENV_ROOT} ]; then
+if [ -z ${MY_RBENV_ROOT} ]; then
   echo "${RBENV_ROOT_ERROR_MESSAGE}" >&2
   exit 1
 fi
 
 PLUGIN_NAME=$(basename $0)
 
-source "${RBENV_ROOT}/plugins/${PLUGIN_NAME}/lib/rbenvhelpers"
+source "${MY_RBENV_ROOT}/plugins/${PLUGIN_NAME}/lib/rbenvhelpers"
 
 execute_command_and_restore_directory update_git_repository ${RBENV_ROOT}
