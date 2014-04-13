@@ -12,6 +12,13 @@ function execute_command_and_restore_directory() {
   popd > /dev/null
 }
 
+#Returns 0 if bundler exists.
+#Returns 1 if bundler does not exist.
+function bundler_exists() {
+  `gem which bundler > /dev/null 2>&1`
+  return $?
+}
+
 #Function to run bundle install.
 #Returns 1 if bundler not installed.
 #Returns 2 if Gemfile path does not lead to a file.
@@ -19,7 +26,7 @@ function execute_command_and_restore_directory() {
 function bundle_install() {
   PATH_TO_BUNDLE_FILE=$1
   
-  if [ bundler_exists() != 0 ] {
+  if [ bundler_exists != 0 ] {
     echo $stderr "Bundler is not installed. Cannot run bundle install."
     return 1
   }
@@ -32,13 +39,6 @@ function bundle_install() {
   `bundle install ${PATH_TO_BUNDLE_FILE}`
   return $?
 
-}
-
-#Returns 0 if bundler exists.
-#Returns 1 if bundler does not exist.
-function bundler_exists() {
-  `gem which bundler > /dev/null 2>&1`
-  return $?
 }
 
 function update_git_repository() {
