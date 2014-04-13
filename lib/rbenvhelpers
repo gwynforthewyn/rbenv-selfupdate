@@ -19,7 +19,7 @@ function execute_command_and_restore_directory() {
 function bundle_install() {
   PATH_TO_BUNDLE_FILE=$1
   
-  if [ bundler_exists() != 0 ] {
+  if [ bundler_exists != 0 ] {
     echo $stderr "Bundler is not installed. Cannot run bundle install."
     return 1
   }
