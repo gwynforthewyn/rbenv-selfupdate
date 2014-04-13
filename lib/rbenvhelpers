@@ -31,7 +31,6 @@ function bundle_install() {
 
   `bundle install ${PATH_TO_BUNDLE_FILE}`
   return $?
-
 }
 
 #Returns 0 if bundler exists.
@@ -39,6 +38,28 @@ function bundle_install() {
 function bundler_exists() {
   `gem which bundler > /dev/null 2>&1`
   return $?
+}
+
+#Echos gem name when it has matched.
+#Returns 0 for success.
+function discover_gem_name_from_ls() {
+  GEM_NAME=$1
+
+  #The Gem names are generally of the format
+  #foo-gem-1.2.3
+  #Sometimes they are of the form:
+  #foo-gem
+  #Do a quick match. If there's no digits, just return the file name.
+  if ! [[ $GEM_NAME =~ .*-[[:digit:]].* ]]; then
+    echo $GEM_NAME
+    return 0
+  fi
+
+  #From the rear of the GEM_NAME, parse everything after the final -
+  NAME=${GEM_NAME%\-*}
+
+  echo "$NAME"
+  return 0
 }
 
 function update_git_repository() {
