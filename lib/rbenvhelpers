@@ -1,11 +1,44 @@
 #!/usr/bin/env bash
 
+UNDERLINE=`tput smul`
+NOUNDERLINE=`tput rmul`
+MY_RBENV_ROOT=`rbenv root`
+
 function execute_command_and_restore_directory() {
   COMMANDS=$*
 
   pushd . > /dev/null
   ${COMMANDS}
   popd > /dev/null
+}
+
+#Function to run bundle install.
+#Returns 1 if bundler not installed.
+#Returns 2 if Gemfile path does not lead to a file.
+#Else returns the return value of bundle install.
+function bundle_install() {
+  PATH_TO_BUNDLE_FILE=$1
+  
+  if [ bundler_exists() != 0 ] {
+    echo $stderr "Bundler is not installed. Cannot run bundle install."
+    return 1
+  }
+
+  if [ ! -f ${PATH_TO_BUNDLE_FILE} ] {
+    echo $stderr "${PATH_TO_BUNDLE_FILE} is not a file. Cannot run bundle installw."
+    return 2
+  }
+
+  `bundle install ${PATH_TO_BUNDLE_FILE}`
+  return $?
+
+}
+
+#Returns 0 if bundler exists.
+#Returns 1 if bundler does not exist.
+function bundler_exists() {
+  `gem which bundler > /dev/null 2>&1`
+  return $?
 }
 
 function update_git_repository() {
