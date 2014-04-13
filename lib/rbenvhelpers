@@ -62,6 +62,16 @@ function discover_gem_name_from_ls() {
   return 0
 }
 
+function discover_gem_version_from_ls() {
+  GEM_NAME=$1
+
+  #From the rear of the GEM_NAME, parse everything after the final -
+  VERSION=${GEM_NAME##*\-}
+
+  echo "$VERSION"
+  return 0
+}
+
 function update_git_repository() {
   GIT_REPOSITORY=$1
 
