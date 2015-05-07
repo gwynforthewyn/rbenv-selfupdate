@@ -86,6 +86,10 @@ function update_git_repository() {
   GIT_REPOSITORY=$1
 
   cd ${GIT_REPOSITORY}
-  echo "In repository <${GIT_REPOSITORY}>"
-  git pull
+  if [ -d ".git"]
+  then
+    git pull
+  else
+    echo "Cannot update <${GIT_REPOSITORY}>. No .git folder found."
+  fi
 }
