@@ -86,6 +86,6 @@ function update_git_repository() {
   GIT_REPOSITORY=$1
 
   cd ${GIT_REPOSITORY}
-
+  echo "In repository <${GIT_REPOSITORY}>"
   git pull
 }
