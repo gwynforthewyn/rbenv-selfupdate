@@ -86,7 +86,7 @@ function update_git_repository() {
   GIT_REPOSITORY=$1
 
   cd ${GIT_REPOSITORY}
-  if [ -d ".git"]
+  if [ -d ".git" ]
   then
     git pull
   else
